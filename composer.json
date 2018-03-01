@@ -1,0 +1,29 @@
+{
+    "name": "hefengbao/charts",
+    "description": "This is a chart package for laravel.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "He Fengbao",
+            "email": "hefengbao88@example.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+      "php": ">=7.0",
+      "illuminate/support": "5.*"
+    },
+    "autoload": {
+      "psr-4": {
+        "HeFengbao": "src/"
+      }
+    },
+    "extra": {
+      "laravel": {
+        "providers": [
+          "HeFengbao\\Charts\\ChartsServiceProvider"
+        ]
+      }
+    }
+}
