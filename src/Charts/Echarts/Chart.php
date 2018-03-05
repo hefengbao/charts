@@ -13,6 +13,8 @@ class Chart extends BaseChart
 
         $this->container = 'charts::echarts.container';
         $this->script = 'charts::echarts.script';
+
+        $this->default();
     }
 
     public function title(bool $show = true, string $text = '', string $subtext = '', array $optional = [])
@@ -76,8 +78,12 @@ class Chart extends BaseChart
         return $this->dataset = $data;
     }
 
-    public function build()
+    public function default()
     {
-        return $this;
+        $this->title();
+        $this->legend();
+        $this->xAxis();
+        $this->yAxis();
+        $this->tooltip();
     }
 }

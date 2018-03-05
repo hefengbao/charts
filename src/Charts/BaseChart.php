@@ -163,7 +163,7 @@ class BaseChart
         if ($overwrite) {
             $this->options = $options;
         } else {
-            $this->options = array_replace_recursive($this->options, $this->options);
+            $this->options = array_replace_recursive($this->options, $options);
         }
 
         return $this;
