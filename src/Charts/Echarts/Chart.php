@@ -15,7 +15,7 @@ class Chart extends BaseChart
         $this->script = 'charts::echarts.script';
     }
 
-    public function title(bool $show = true, string $text = '', string $subtext = '')
+    public function title(bool $show = true, string $text = '', string $subtext = '', array $optional = [])
     {
         return $this->options([
             'title' => [
@@ -26,7 +26,7 @@ class Chart extends BaseChart
         ]);
     }
 
-    public function legend(bool $show, string $type = 'plain')
+    public function legend(bool $show, string $type = 'plain', array $optional = [])
     {
         return $this->options([
             'legend' => [
@@ -37,7 +37,29 @@ class Chart extends BaseChart
         ]);
     }
 
-    public function tooltip(bool $show = true)
+    public function xAxis(bool $show = true, string $type = 'category', string $name = '', array $optional = [])
+    {
+        return $this->options([
+            'xAxis' => [
+                'show' => $show,
+                'type' => $type,
+                'name' => $name
+            ]
+        ]);
+    }
+
+    public function yAxis(bool $show = true, string $type = 'value', string $name = '', array $optional = [])
+    {
+        return $this->options([
+            'yAxis' => [
+                'show' => $show,
+                'type' => $type,
+                'name' => $name
+            ]
+        ]);
+    }
+
+    public function tooltip(bool $show = true, array $optional = [])
     {
         return $this->options([
             'tooltip' => [
@@ -56,8 +78,6 @@ class Chart extends BaseChart
 
     public function build()
     {
-        $this->title();
-        $this->legend();
+        return $this;
     }
-
 }
