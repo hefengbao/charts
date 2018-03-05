@@ -1,6 +1,6 @@
 <?php
 
-namespace HeFengbao;
+namespace HeFengbao\Charts;
 
 class Chart
 {

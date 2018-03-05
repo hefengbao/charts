@@ -1,6 +1,6 @@
 <?php
 
-namespace HeFengbao\Charts;
+namespace HeFengbao\Charts\Builder;
 
 
 use Illuminate\Support\Collection;

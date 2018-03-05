@@ -16,7 +16,7 @@
   },
   "autoload": {
     "psr-4": {
-      "HeFengbao\\": "src/"
+      "HeFengbao\\Charts\\": "src/"
     }
   },
   "extra": {

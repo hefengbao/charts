@@ -1,8 +1,9 @@
 <?php
 
-namespace HeFengbao\ECharts\Charts;
+namespace HeFengbao\Charts\Builder\ECharts\Charts;
 
-use HeFengbao\Charts\BaseChart;
+
+use HeFengbao\Charts\Builder\BaseChart;
 
 class Chart extends BaseChart
 {
@@ -28,7 +29,7 @@ class Chart extends BaseChart
         ]);
     }
 
-    public function legend(bool $show, string $type = 'plain', array $optional = [])
+    public function legend(bool $show = true, string $type = 'plain', array $optional = [])
     {
         return $this->setOptions([
             'legend' => [
