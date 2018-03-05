@@ -17,7 +17,7 @@ class Chart extends BaseChart
 
     public function title(bool $show = true, string $text = '', string $subtext = '', array $optional = [])
     {
-        return $this->options([
+        return $this->setOptions([
             'title' => [
                 'show' => $show,
                 'text' => $text,
@@ -28,7 +28,7 @@ class Chart extends BaseChart
 
     public function legend(bool $show, string $type = 'plain', array $optional = [])
     {
-        return $this->options([
+        return $this->setOptions([
             'legend' => [
                 'show' => $show,
                 'type' => $type,
@@ -39,7 +39,7 @@ class Chart extends BaseChart
 
     public function xAxis(bool $show = true, string $type = 'category', string $name = '', array $optional = [])
     {
-        return $this->options([
+        return $this->setOptions([
             'xAxis' => [
                 'show' => $show,
                 'type' => $type,
@@ -50,7 +50,7 @@ class Chart extends BaseChart
 
     public function yAxis(bool $show = true, string $type = 'value', string $name = '', array $optional = [])
     {
-        return $this->options([
+        return $this->setOptions([
             'yAxis' => [
                 'show' => $show,
                 'type' => $type,
@@ -61,7 +61,7 @@ class Chart extends BaseChart
 
     public function tooltip(bool $show = true, array $optional = [])
     {
-        return $this->options([
+        return $this->setOptions([
             'tooltip' => [
                 'show' => $show,
             ],

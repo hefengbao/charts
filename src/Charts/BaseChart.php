@@ -153,4 +153,19 @@ class BaseChart
 
         return $this;
     }
+
+    protected function setOptions($options, bool $overwrite = false)
+    {
+        if ($options instanceof Collection) {
+            $options = $options->toArray();
+        }
+
+        if ($overwrite) {
+            $this->options = $options;
+        } else {
+            $this->options = array_replace_recursive($this->options, $this->options);
+        }
+
+        return $this;
+    }
 }
