@@ -3,6 +3,9 @@
 namespace HeFengbao\Charts;
 
 
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\View;
+
 class BaseChart
 {
     /**
@@ -125,5 +128,29 @@ class BaseChart
     public function loaderColor(string $color)
     {
         return $this->loaderColor = $color;
+    }
+
+    public function container(string $container = null)
+    {
+        if ($container) {
+            return View::make($this->container, ['chart' => $this]);
+        }
+
+        return $this->container = $container;
+    }
+
+    public function script(string $script = null)
+    {
+        if (count($this->dataset) == 0 && !$this->api_url) {
+            throw new \Exception('No datasets provided, please provide at least one dataset to generate a chart');
+        }
+
+        if (!$script) {
+            return View::make($this->script, ['chart' => $this]);
+        }
+
+        $this->script = $script;
+
+        return $this;
     }
 }

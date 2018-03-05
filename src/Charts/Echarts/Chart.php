@@ -1,23 +1,19 @@
 <?php
 
-namespace HeFengbao\Charts;
+namespace HeFengbao\ECharts\Charts;
 
+use HeFengbao\Charts\BaseChart;
 
 class Chart extends BaseChart
 {
-    /**
-     * @var string
-     */
-    public $title;
 
     public function __construct()
     {
         parent::__construct();
-        
+
         $this->container = 'charts::echarts.container';
         $this->script = 'charts::echarts.script';
     }
-
 
     public function title(bool $show = true, string $text = '', string $subtext = '')
     {
@@ -48,6 +44,14 @@ class Chart extends BaseChart
                 'show' => $show,
             ],
         ]);
+    }
+
+    public function dataset($data)
+    {
+        if ($data instanceof Collection) {
+            $data = $data->toArray();
+        }
+        return $this->dataset = $data;
     }
 
     public function build()
