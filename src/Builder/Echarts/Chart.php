@@ -25,6 +25,7 @@ class Chart extends BaseChart
                 'show' => $show,
                 'text' => $text,
                 'subtext' => $subtext,
+                'left' => 'middle'
             ]
         ]);
     }
@@ -79,12 +80,24 @@ class Chart extends BaseChart
         return $this->dataset = $data;
     }
 
-    public function default()
+    public function series(array $type = ['line'])
+    {
+        $temp = [];
+        foreach ($type as $value) {
+            array_push($temp, ["type" => $value, "seriesLayoutBy" => 'row']);
+        }
+        return $this->setOptions([
+            "series" => $temp
+        ]);
+    }
+
+    private function default()
     {
         $this->title();
         $this->legend();
         $this->xAxis();
         $this->yAxis();
         $this->tooltip();
+        $this->series();
     }
 }

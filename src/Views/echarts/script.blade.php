@@ -2,9 +2,11 @@
     function {{ $chart->id }}_create(data) {
         {{ $chart->id }}_rendered = true;
         document.getElementById("{{ $chart->id }}_loader").remove();
-        window.{{ $chart->id }} = echarts.init(document.getElementById("{{ $chart->id }}"),{{ $chart->theme }}).setOption({
-            series: data,
-            {!! $chart->formatOptions(false, true) !!}
+        window.{{ $chart->id }} = echarts.init(document.getElementById("{{ $chart->id }}"), '{{ $chart->theme }}').setOption({
+            dataset: {
+                source: data
+            },
+            {!! $chart->formatOptions() !!}
         });
     }
     @include('charts::init')
