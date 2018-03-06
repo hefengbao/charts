@@ -184,6 +184,19 @@ class BaseChart
     }
 
     /**
+     * Set chart dataset.
+     * @param array|Collection $data
+     * @return array
+     */
+    public function dataset($data)
+    {
+        if ($data instanceof Collection) {
+            $data = $data->toArray();
+        }
+        return $this->dataset = $data;
+    }
+
+    /**
      * @param $options
      * @param bool $overwrite
      * @return $this
@@ -209,34 +222,6 @@ class BaseChart
     public function formatOptions()
     {
         return $options = substr(json_encode($this->options), 1, -1);
-    }
-
-    public function formatDatasets()
-    {
-        // This little boy was commented because it's not compatible
-        // in laravel < 5.4
-        //
-        // return Collection::make($this->datasets)
-        //     ->each
-        //     ->matchValues(count($this->labels))
-        //     ->map
-        //     ->format($this->labels)
-        //     ->toJson();
-
-        /*return Collection::make($this->datasets)
-            ->each(function ($dataset) {
-                $dataset->matchValues(count($this->labels));
-            })
-            ->map(function ($dataset) {
-                return $dataset->format($this->labels);
-            })
-            ->toJson();*/
-        /*$this->options([
-            "dataset" => [
-                "source" => $data
-            ]
-        ]);*/
-        return json_encode($this->dataset);
     }
 
     /**

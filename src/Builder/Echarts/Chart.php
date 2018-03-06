@@ -17,6 +17,16 @@ class Chart extends BaseChart
         $this->default();
     }
 
+    private function default()
+    {
+        $this->title();
+        $this->legend();
+        $this->xAxis();
+        $this->yAxis();
+        $this->tooltip();
+        $this->series();
+    }
+
     public function title(bool $show = true, string $text = '', string $subtext = '', array $optional = [])
     {
         return $this->setOptions([
@@ -71,13 +81,6 @@ class Chart extends BaseChart
         ]);
     }
 
-    public function dataset($data)
-    {
-        if ($data instanceof Collection) {
-            $data = $data->toArray();
-        }
-        return $this->dataset = $data;
-    }
 
     public function series(array $type = ['line'])
     {
@@ -90,13 +93,21 @@ class Chart extends BaseChart
         ]);
     }
 
-    private function default()
+    public function formatDatasets()
     {
-        $this->title();
-        $this->legend();
-        $this->xAxis();
-        $this->yAxis();
-        $this->tooltip();
-        $this->series();
+        $data = [];
+        if (count($this->dataset) && count($this->dataset) != count($this->dataset, 1)) {
+            $diemensions = [];
+            foreach ($this->dataset as $item) {
+                $diemensions = array_replace_recursive($diemensions, array_keys($item));
+                array_push($data, array_values($item));
+            }
+            array_unshift($data, $diemensions);
+        } else {
+            array_push($data, array_keys($this->dataset));
+            array_push($data, array_values($this->dataset));
+        }
+
+        return json_encode($data);
     }
 }
