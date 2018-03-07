@@ -8,6 +8,10 @@ class ChartsServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->publishes([
+            __DIR__ . '/Config/charts.php' => config_path('charts.php'),
+        ], 'charts_config');
+
         $this->loadViewsFrom(__DIR__ . '/Views', 'charts');
 
         $this->publishes([
@@ -17,6 +21,9 @@ class ChartsServiceProvider extends ServiceProvider
 
     public function register()
     {
-
+        $this->mergeConfigFrom(
+            __DIR__ . '/Config/charts.php',
+            'charts'
+        );
     }
 }
