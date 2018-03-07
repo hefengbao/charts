@@ -1,6 +1,6 @@
 <?php
 
-namespace HeFengbao\Charts\Builder\ECharts;
+namespace HeFengbao\Charts\Builder\Echarts;
 
 use HeFengbao\Charts\Builder\BaseChart;
 

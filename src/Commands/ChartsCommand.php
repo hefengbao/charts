@@ -55,11 +55,11 @@ class ChartsCommand extends Command
             return;
         }
 
-        $file = file_get_contents(__DIR__ . '/../Chart.php');
+        $file = file_get_contents(__DIR__ . '/Builder/ChartTemple.php');
 
         file_put_contents($fpath, $file);
 
-        $this->strReplaceFile('ChartClass', $this->argument('name'), $fpath);
+        $this->strReplaceFile('ChartTemple', $this->argument('name'), $fpath);
         $this->strReplaceFile(
             'Library',
             $this->argument('library') ? ucfirst($this->argument('library')) : ucfirst(config('charts.default_library')),
