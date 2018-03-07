@@ -1,29 +1,29 @@
 {
-  "name": "hefengbao/charts",
-  "description": "This is a chart package for laravel.",
-  "type": "library",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "He Fengbao",
-      "email": "hefengbao88@gmail.com"
+    "name": "hefengbao/charts",
+    "description": "This is a chart package for laravel.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+          "name": "He Fengbao",
+          "email": "hefengbao88@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.0",
+        "illuminate/support": "5.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "HeFengbao\\Charts\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "HeFengbao\\Charts\\ChartsServiceProvider"
+            ]
+        }
     }
-  ],
-  "minimum-stability": "stable",
-  "require": {
-    "php": ">=7.0",
-    "illuminate/support": "5.*"
-  },
-  "autoload": {
-    "psr-4": {
-      "HeFengbao\\Charts\\": "src/"
-    }
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "HeFengbao\\Charts\\ChartsServiceProvider"
-      ]
-    }
-  }
 }

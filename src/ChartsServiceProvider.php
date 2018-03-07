@@ -17,6 +17,12 @@ class ChartsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/Views' => resource_path('views/vendor/charts'),
         ]);
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \HeFengbao\Charts\Commands\ChartsCommand::class
+            ]);
+        }
     }
 
     public function register()

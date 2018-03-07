@@ -2,7 +2,11 @@
 
 namespace HeFengbao\Charts;
 
-class Chart
-{
+use HeFengbao\Charts\Builder\Library\Charts;
 
+class Chart extends Charts
+{
+    public function __construct()
+    {
+    }
 }
