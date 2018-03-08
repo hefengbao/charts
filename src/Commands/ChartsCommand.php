@@ -39,6 +39,13 @@ class ChartsCommand extends Command
      */
     public function handle()
     {
+        if ($this->argument('library')) {
+            if (!in_array(strtolower($this->argument('library')), ['echarts', 'g2'])) {
+                $this->info('The library must be echarts or g2.');
+                return;
+            }
+        }
+
         $this->line('[Charts] Creating chart...');
 
         $path = base_path('app/Charts');

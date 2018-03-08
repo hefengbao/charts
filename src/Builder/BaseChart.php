@@ -96,7 +96,8 @@ class BaseChart
      */
     public function theme(string $theme)
     {
-        return $this->theme = $theme;
+        $this->theme = $theme;
+        return $this;
     }
 
     /**
@@ -107,17 +108,19 @@ class BaseChart
      */
     public function load(string $url)
     {
-        return $this->api_url = $url;
+        $this->api_url = $url;
+        return $this;
     }
 
     /**
      * Set if show loader.
      * @param bool $loader
-     * @return bool
+     * @return $this
      */
     public function loader(bool $loader)
     {
-        return $this->loader = $loader;
+        $this->loader = $loader;
+        return $this;
     }
 
     /**
@@ -127,13 +130,14 @@ class BaseChart
      */
     public function loaderColor(string $color)
     {
-        return $this->loaderColor = $color;
+        $this->loaderColor = $color;
+        return $this;
     }
 
     /**
      * Chart container.
      * @param string|null $container
-     * @return string
+     * @return $this
      */
     public function container(string $container = null)
     {
@@ -141,27 +145,30 @@ class BaseChart
             return View::make($this->container, ['chart' => $this]);
         }
 
-        return $this->container = $container;
+        $this->container = $container;
+        return $this;
     }
 
     /**
-     *The height of chart container.
+     * The height of chart container.
      * @param int $height
-     * @return string
+     * @return $this
      */
     public function height(int $height)
     {
-        return $this->height = $height . 'px';
+        $this->height = $height . 'px';
+        return $this;
     }
 
     /**
      * The width of chart container.
      * @param int $width
-     * @return string
+     * @return $this
      */
     public function width(int $width)
     {
-        return $this->width = $width . 'px';
+        $this->width = $width . 'px';
+        return $this;
     }
 
     /**
@@ -172,7 +179,7 @@ class BaseChart
     public function script(string $script = null)
     {
         if (count($this->dataset) == 0 && !$this->api_url) {
-            throw new \Exception('No datasets provided, please provide at least one dataset to generate a chart');
+            throw new \Exception('No datasets provided, please provide dataset to generate a chart');
         }
         if (!$script) {
             return View::make($this->script, ['chart' => $this]);
@@ -186,14 +193,15 @@ class BaseChart
     /**
      * Set chart dataset.
      * @param array|Collection $data
-     * @return array
+     * @return $this
      */
     public function dataset($data)
     {
         if ($data instanceof Collection) {
             $data = $data->toArray();
         }
-        return $this->dataset = $data;
+        $this->dataset = $data;
+        return $this;
     }
 
     /**

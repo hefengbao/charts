@@ -13,8 +13,6 @@ class Chart extends BaseChart
 
         $this->container = 'charts::echarts.container';
         $this->script = 'charts::echarts.script';
-
-        $this->default();
     }
 
     private function default()
@@ -27,11 +25,10 @@ class Chart extends BaseChart
         $this->series();
     }
 
-    public function title(bool $show = true, string $text = '', string $subtext = '', array $optional = [])
+    public function title(string $text = '', string $subtext = '', array $optional = [])
     {
         return $this->setOptions([
             'title' => [
-                'show' => $show,
                 'text' => $text,
                 'subtext' => $subtext,
                 'left' => 'middle'
@@ -39,33 +36,30 @@ class Chart extends BaseChart
         ]);
     }
 
-    public function legend(bool $show = true, string $type = 'plain', array $optional = [])
+    public function legend(string $type = 'plain', array $optional = [])
     {
         return $this->setOptions([
             'legend' => [
-                'show' => $show,
                 'type' => $type,
                 'bottom' => 10
             ]
         ]);
     }
 
-    public function xAxis(bool $show = true, string $type = 'category', string $name = '', array $optional = [])
+    public function xAxis(string $type = 'category', string $name = '', array $optional = [])
     {
         return $this->setOptions([
             'xAxis' => [
-                'show' => $show,
                 'type' => $type,
                 'name' => $name
             ]
         ]);
     }
 
-    public function yAxis(bool $show = true, string $type = 'value', string $name = '', array $optional = [])
+    public function yAxis(string $type = 'value', string $name = '', array $optional = [])
     {
         return $this->setOptions([
             'yAxis' => [
-                'show' => $show,
                 'type' => $type,
                 'name' => $name
             ]
