@@ -104,11 +104,22 @@ class Chart extends BaseChart
     }
 
 
-    public function series(array $type = ['line'])
+    /**
+     * Set the chart type.
+     * @param string|array $type
+     * @return $this
+     */
+    public function series($type = 'line')
     {
         $temp = [];
-        foreach ($type as $value) {
-            array_push($temp, ["type" => $value, "seriesLayoutBy" => 'row']);
+        if (is_array($this)) {
+            foreach ($type as $value) {
+                array_push($temp, ["type" => $value, "seriesLayoutBy" => 'row']);
+            }
+        } else {
+            for ($i = 0; $i <= count($this->dataset); $i++) {
+                array_push($temp, ["type" => $type, "seriesLayoutBy" => 'row']);
+            }
         }
         $this->setOptions([
             "series" => $temp
