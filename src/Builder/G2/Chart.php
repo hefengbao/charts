@@ -1,6 +1,6 @@
 <?php
 
-namespace HeFengbao\Charts\Builder\G9;
+namespace HeFengbao\Charts\Builder\G2;
 
 
 use HeFengbao\Charts\Builder\BaseChart;

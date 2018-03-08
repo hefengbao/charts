@@ -62,7 +62,7 @@ class ChartsCommand extends Command
             return;
         }
 
-        $file = file_get_contents(__DIR__ . '/Builder/ChartTemple.php');
+        $file = file_get_contents(__DIR__ . '/../Builder/ChartTemple.php');
 
         file_put_contents($fpath, $file);
 
