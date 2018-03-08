@@ -31,66 +31,76 @@ class Chart extends BaseChart
      * See detail http://echarts.baidu.com/option.html#title
      * @param string $text
      * @param string $subtext
-     * @return array
+     * @return $this
      */
     public function title(string $text = '', string $subtext = '')
     {
-        return $this->setOptions([
+        $this->setOptions([
             'title' => [
                 'text' => $text,
                 'subtext' => $subtext,
                 'left' => 'middle'
             ]
         ]);
+
+        return $this;
     }
 
     /**
      * See more http://echarts.baidu.com/option.html#legend
      * @param string $type
-     * @return array
+     * @return $this
      */
     public function legend(string $type = 'plain')
     {
-        return $this->setOptions([
+        $this->setOptions([
             'legend' => [
                 'type' => $type,
                 'bottom' => 10
             ]
         ]);
+
+        return $this;
     }
 
     public function xAxis(string $type = 'category', string $name = '')
     {
-        return $this->setOptions([
+        $this->setOptions([
             'xAxis' => [
                 'type' => $type,
                 'name' => $name
             ]
         ]);
+
+        return $this;
     }
 
     public function yAxis(string $type = 'value', string $name = '')
     {
-        return $this->setOptions([
+        $this->setOptions([
             'yAxis' => [
                 'type' => $type,
                 'name' => $name
             ]
         ]);
+
+        return $this;
     }
 
     /**
      * @param string $formatter http://echarts.baidu.com/option.html#tooltip.formatter
-     * @return array
+     * @return $this
      */
     public function tooltip(string $formatter = '')
     {
-        return $this->setOptions([
+        $this->setOptions([
             'tooltip' => [
                 'show' => true,
                 'formatter' => $formatter
             ],
         ]);
+
+        return $this;
     }
 
 
@@ -100,9 +110,11 @@ class Chart extends BaseChart
         foreach ($type as $value) {
             array_push($temp, ["type" => $value, "seriesLayoutBy" => 'row']);
         }
-        return $this->setOptions([
+        $this->setOptions([
             "series" => $temp
         ]);
+
+        return $this;
     }
 
     /**
@@ -120,6 +132,10 @@ class Chart extends BaseChart
         return $this;
     }
 
+    /**
+     * Format Dataset.
+     * @return string
+     */
     public function formatDatasets()
     {
         $data = [];
