@@ -1,6 +1,6 @@
 <?php
 
-namespace HeFengbao\Charts\Builder;
+namespace App\Charts;
 
 use HeFengbao\Charts\Builder\Library\Chart;
 

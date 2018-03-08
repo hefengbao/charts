@@ -13,6 +13,7 @@ class Chart extends BaseChart
 
         $this->container = 'charts::echarts.container';
         $this->script = 'charts::echarts.script';
+        $this->default();
     }
 
     private function default()
@@ -25,7 +26,14 @@ class Chart extends BaseChart
         $this->series();
     }
 
-    public function title(string $text = '', string $subtext = '', array $optional = [])
+    /**
+     * Set chart title.
+     * See detail http://echarts.baidu.com/option.html#title
+     * @param string $text
+     * @param string $subtext
+     * @return array
+     */
+    public function title(string $text = '', string $subtext = '')
     {
         return $this->setOptions([
             'title' => [
@@ -36,7 +44,12 @@ class Chart extends BaseChart
         ]);
     }
 
-    public function legend(string $type = 'plain', array $optional = [])
+    /**
+     * See more http://echarts.baidu.com/option.html#legend
+     * @param string $type
+     * @return array
+     */
+    public function legend(string $type = 'plain')
     {
         return $this->setOptions([
             'legend' => [
@@ -46,7 +59,7 @@ class Chart extends BaseChart
         ]);
     }
 
-    public function xAxis(string $type = 'category', string $name = '', array $optional = [])
+    public function xAxis(string $type = 'category', string $name = '')
     {
         return $this->setOptions([
             'xAxis' => [
@@ -56,7 +69,7 @@ class Chart extends BaseChart
         ]);
     }
 
-    public function yAxis(string $type = 'value', string $name = '', array $optional = [])
+    public function yAxis(string $type = 'value', string $name = '')
     {
         return $this->setOptions([
             'yAxis' => [
@@ -66,11 +79,16 @@ class Chart extends BaseChart
         ]);
     }
 
-    public function tooltip(bool $show = true, array $optional = [])
+    /**
+     * @param string $formatter http://echarts.baidu.com/option.html#tooltip.formatter
+     * @return array
+     */
+    public function tooltip(string $formatter = '')
     {
         return $this->setOptions([
             'tooltip' => [
-                'show' => $show,
+                'show' => true,
+                'formatter' => $formatter
             ],
         ]);
     }
@@ -85,6 +103,21 @@ class Chart extends BaseChart
         return $this->setOptions([
             "series" => $temp
         ]);
+    }
+
+    /**
+     * Set more option.
+     * @param string $option Option name.
+     * @param array $value Option value.
+     * @return $this
+     */
+    public function option(string $option, array $value)
+    {
+        $this->options = array_replace_recursive($this->options, $this->setOptions([
+            "$option" => $value
+        ]));
+
+        return $this;
     }
 
     public function formatDatasets()

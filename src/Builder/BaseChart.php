@@ -205,9 +205,10 @@ class BaseChart
     }
 
     /**
+     * Set chart options.
      * @param $options
      * @param bool $overwrite
-     * @return $this
+     * @return array
      */
     protected function setOptions($options, bool $overwrite = false)
     {
@@ -221,7 +222,7 @@ class BaseChart
             $this->options = array_replace_recursive($this->options, $options);
         }
 
-        return $this;
+        return $this->options;
     }
 
     /**
@@ -237,6 +238,6 @@ class BaseChart
      */
     public function formatContainerOptions()
     {
-        return 'style="height: ' . $this->height . ';width: ' . $this->width . '%" ';
+        return 'style="height: ' . $this->height . ';width: ' . $this->width . '"';
     }
 }
