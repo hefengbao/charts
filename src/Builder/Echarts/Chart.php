@@ -63,7 +63,7 @@ class Chart extends BaseChart
         return $this;
     }
 
-    public function xAxis(string $type = 'category', string $name = '')
+    public function xAxis(string $name = '', string $type = 'category')
     {
         $this->setOptions([
             'xAxis' => [
@@ -75,7 +75,7 @@ class Chart extends BaseChart
         return $this;
     }
 
-    public function yAxis(string $type = 'value', string $name = '')
+    public function yAxis(string $name = '', string $type = 'value')
     {
         $this->setOptions([
             'yAxis' => [
@@ -88,15 +88,20 @@ class Chart extends BaseChart
     }
 
     /**
-     * @param string $formatter http://echarts.baidu.com/option.html#tooltip.formatter
+     * @param string $trigger
      * @return $this
      */
-    public function tooltip(string $formatter = '')
+    public function tooltip(string $trigger = 'item')
     {
         $this->setOptions([
             'tooltip' => [
-                'show' => true,
-                'formatter' => $formatter
+                'trigger' => $trigger,
+                'axisPointer' => [
+                    'type' => 'cross',
+                    'label' => [
+                        'backgroundColor' => '#6a7985'
+                    ]
+                ]
             ],
         ]);
 
@@ -107,18 +112,30 @@ class Chart extends BaseChart
     /**
      * Set the chart type.
      * @param string|array $type
+     * @param array $optional
      * @return $this
      */
-    public function series($type = 'line')
+    public function series($type = 'line', array $optional = [])
     {
         $temp = [];
-        if (is_array($this)) {
-            foreach ($type as $value) {
-                array_push($temp, ["type" => $value, "seriesLayoutBy" => 'row']);
+        if (is_array($type)) {
+            foreach ($type as $key => $value) {
+                if (array_key_exists($key, $optional)) {
+                    array_push($temp, array_replace_recursive(['type' => $value, 'seriesLayoutBy' => 'row'],
+                        $optional[$key]));
+                } else {
+                    array_push($temp, ['type' => $value, 'seriesLayoutBy' => 'row']);
+                }
             }
         } else {
-            for ($i = 0; $i <= count($this->dataset); $i++) {
-                array_push($temp, ["type" => $type, "seriesLayoutBy" => 'row']);
+            for ($i = 0; $i < count($this->dataset); $i++) {
+                if (count($optional)) {
+                    array_push($temp, array_replace_recursive(['type' => $type, 'seriesLayoutBy' => 'row'],
+                        $optional));
+                } else {
+                    array_push($temp, ['type' => $type, 'seriesLayoutBy' => 'row']);
+                }
+
             }
         }
         $this->setOptions([
