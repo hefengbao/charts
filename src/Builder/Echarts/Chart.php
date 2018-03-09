@@ -67,8 +67,10 @@ class Chart extends BaseChart
     {
         $this->setOptions([
             'xAxis' => [
-                'type' => $type,
-                'name' => $name
+                [
+                    'type' => $type,
+                    'name' => $name
+                ]
             ]
         ]);
 
@@ -79,8 +81,10 @@ class Chart extends BaseChart
     {
         $this->setOptions([
             'yAxis' => [
-                'type' => $type,
-                'name' => $name
+                [
+                    'type' => $type,
+                    'name' => $name
+                ]
             ]
         ]);
 
@@ -140,6 +144,35 @@ class Chart extends BaseChart
         }
         $this->setOptions([
             "series" => $temp
+        ]);
+
+        return $this;
+    }
+
+    /**
+     * See more http://echarts.baidu.com/option.html#animationDuration
+     * @param int $duration
+     * @return $this
+     */
+    public function animationDuration(int $duration = 100)
+    {
+        $str = <<<ETO
+function (idx){
+                return idx * $duration;
+            }
+ETO;
+
+        $this->setOptions([
+            'animationDuration' => $str
+        ]);
+
+        return $this;
+    }
+
+    public function animationEasing(string $easing)
+    {
+        $this->setOptions([
+            'animationEasing' => $easing
         ]);
 
         return $this;
